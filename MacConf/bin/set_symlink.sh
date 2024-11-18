@@ -1,7 +1,7 @@
 echo "<-------- Set symlink START -------->"
 
 if [[ -z "$MAC_CONF_DIR" ]]; then
-    echo "!!! MacConf directory not found."
+    echo "ERROR: MacConf directory not found."
     exit 1
 fi
 
@@ -16,6 +16,12 @@ declare -A link_map=(
 for target in "${(@k)link_map}"; do
     source="${link_map[$target]}"
     target=${~target}
+
+    dir_of_target=$(dirname "$target")
+    if [[ ! -d "$dir_of_target" ]]; then
+        echo ">> Directory $dir_of_target does not exist. Creating it."
+        mkdir -p "$dir_of_target"
+    fi
 
     if [[ -e "$target" ]]; then
         if [[ ! -L "$target" ]]; then

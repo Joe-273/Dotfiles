@@ -15,7 +15,7 @@ fi
 if [ -d "$OH_MY_ZSH_DIR" ]; then
     echo ">> Oh My Zsh installation or update completed successfully!"
 else
-    echo "!!! Oh My Zsh installation or update failed."
+    echo "ERROR: Oh My Zsh installation or update failed."
     exit 1
 fi
 
@@ -27,7 +27,7 @@ if [ -d "$OH_MY_ZSH_DIR" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     echo ">> Plugins download completed!"
 else
-    echo "!!! Oh My Zsh installation or update failed."
+    echo "ERROR: Oh My Zsh installation or update failed."
     exit 1
 fi
 
