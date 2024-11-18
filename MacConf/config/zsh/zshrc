@@ -1,13 +1,20 @@
+# Path to Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 # Set oh-my-zsh theme
 ZSH_THEME="robbyrussell"
 
 # Config oh-my-zsh plugins
-plugins = (git zsh-autosuggestions zhs-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # Load oh-my-zsh
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
-# User Configuration
+# Key binding
+bindkey "^Y" accept-line
+
+# [[ User Configuration ]]
+# Quick Command
 cdd() {
   local dir
     dir=$(fd --type d --hidden --exclude .git | fzf \
@@ -33,3 +40,10 @@ of() {
     nvim "$file"
   fi
 }
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
