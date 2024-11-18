@@ -1,1 +1,35 @@
+# Set oh-my-zsh theme
+ZSH_THEME="robbyrussell"
+
+# Config oh-my-zsh plugins
+plugins = (git zsh-autosuggestions zhs-syntax-highlighting)
+
+# Load oh-my-zsh
 source ~/.oh-my-zsh/oh-my-zsh.sh
+
+# User Configuration
+cdd() {
+  local dir
+    dir=$(fd --type d --hidden --exclude .git | fzf \
+    --height 40% \
+    --reverse \
+    --border \
+    --prompt "Select Dir: "
+  )
+  if [[ -n "$dir" ]]; then
+    cd "$dir"
+  fi
+}
+of() {
+  local file
+  file=$(fd --type f --hidden --exclude .git | fzf \
+    --preview 'cat {}' \
+    --preview-window right \
+    --reverse \
+    --border \
+    --prompt "Choose File: "
+  )
+  if [[ -n "$file" ]]; then
+    nvim "$file"
+  fi
+}
