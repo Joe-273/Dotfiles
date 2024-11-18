@@ -1,4 +1,11 @@
-SOURCE="$HOME/Dotfiles/MacConf/config"
+echo ">>>>>> Set symlink START >>>>>>"
+
+if [[ -z "$MAC_CONF_DIR" ]]; then
+    echo "!!! Please run < mac_setup.sh > first."
+    exit 1
+fi
+
+SOURCE="$MAC_CONF_DIR/config"
 declare -A link_map=(
     ["~/.zshrc"]="$SOURCE/zsh/zshrc"
     ["~/.gitconfig"]="$SOURCE/git/gitconfig"
@@ -14,18 +21,18 @@ for target in "${(@k)link_map}"; do
         if [[ ! -L "$target" ]]; then
             # Backup
             backup="${target}.bak"
-            echo ">>> Found existing file at $target. Backing it up to $backup."
+            echo ">> Found existing file at $target. Backing it up to $backup."
             mv "$target" "$backup"
         else
             # Replace
-            echo ">>> Existing symlink found at $target. Removing it."
+            echo ">> Existing symlink found at $target. Removing it."
             rm "$target"
         fi
     fi
 
     # Create symlink
-    echo ">>> Linking $target to $source."
+    echo ">> Linking $target to $source."
     ln -s "$source" "$target"
 done
 
-echo ">>> All dotfiles symlinks created successfully!"
+echo "<<<<<< Set symlink END <<<<<<"
