@@ -1,7 +1,7 @@
 echo ">>>>>> Set symlink START >>>>>>"
 
 if [[ -z "$MAC_CONF_DIR" ]]; then
-    echo "!!! Please run < mac_setup.sh > first."
+    echo "!!! MacConf directory not found."
     exit 1
 fi
 

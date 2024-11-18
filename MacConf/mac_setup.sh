@@ -1,6 +1,5 @@
 echo ">>>>>> Mac Setup START >>>>>>"
 
-export MAC_CONF_DIR="$(pwd)"
 
 for script in "$MAC_CONF_DIR/bin/"*.sh; do
     chmod +x "$script"
