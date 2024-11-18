@@ -1,29 +1,29 @@
 SOURCE="$HOME/Dotfiles/MacConf/config"
+declare -A link_map=(
+    ["~/.zshrc"]="$SOURCE/zsh/zshrc"
+    ["~/.gitconfig"]="$SOURCE/git/gitconfig"
+)
 
-declare -A links
-links["$HOME/.zshrc"]="$SOURCE/zsh/zshrc"
+for target in "${(@k)link_map}"; do
+    source="${link_map[$target]}"
+    target=${~target}
 
-create_symlink() {
-    local target=$1
-    local link_name=$2
-
-    if [[ -e $link_name && ! -L $link_name ]]; then
-        echo "Backing up $link_name to $link_name.bak"
-        mv "$link_name" "$link_name.bak"
+    if [[ -e "$target" ]]; then
+        if [[ ! -L "$target" ]]; then
+            # Backup
+            backup="${target}.bak"
+            echo ">>> Found existing file at $target. Backing it up to $backup."
+            mv "$target" "$backup"
+        else
+            # Replace
+            echo ">>> Existing symlink found at $target. Removing it."
+            rm "$target"
+        fi
     fi
 
-    if [[ -L $link_name ]]; then
-        echo "Removing existing symlink $link_name"
-        rm "$link_name"
-    fi
-
-    echo "Creating symlink: $link_name -> $target"
-    ln -s "$target" "$link_name"
-}
-
-for link_name in "${(k)links[@]}"; do
-    target=${links[$link_name]}
-    create_symlink "$target" "$link_name"
+    # Create symlink
+    echo ">>> Linking $target to $source."
+    ln -s "$source" "$target"
 done
 
-echo ">>> Dotfiles symlinks created successfully."
+echo ">>> All dotfiles symlinks created successfully!"
