@@ -1,4 +1,4 @@
-SOURCE="$HOME/Dotfiles/config"
+SOURCE="$HOME/Dotfiles/MacConf/config"
 
 declare -A links
 links["$HOME/.zshrc"]="$SOURCE/zsh/zshrc"
@@ -21,7 +21,7 @@ create_symlink() {
     ln -s "$target" "$link_name"
 }
 
-for link_name in "${!links[@]}"; do
+for link_name in "${(k)links[@]}"; do
     target=${links[$link_name]}
     create_symlink "$target" "$link_name"
 done
