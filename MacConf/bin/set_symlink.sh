@@ -1,4 +1,4 @@
-echo ">>>>>> Set symlink START >>>>>>"
+echo "<-------- Set symlink START -------->"
 
 if [[ -z "$MAC_CONF_DIR" ]]; then
     echo "!!! MacConf directory not found."
@@ -35,4 +35,4 @@ for target in "${(@k)link_map}"; do
     ln -s "$source" "$target"
 done
 
-echo "<<<<<< Set symlink END <<<<<<"
+echo "<-------- Set symlink END -------->"

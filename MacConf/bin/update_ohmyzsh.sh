@@ -1,4 +1,4 @@
-echo ">>>>>> Update oh-my-zsh START >>>>>>"
+echo "<-------- Update oh-my-zsh START -------->"
 
 OH_MY_ZSH_DIR="$HOME/.oh-my-zsh"
 
@@ -31,4 +31,4 @@ else
     exit 1
 fi
 
-echo "<<<<<< Update oh-my-zsh END <<<<<<"
+echo "<-------- Update oh-my-zsh END -------->"

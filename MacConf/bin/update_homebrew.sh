@@ -1,4 +1,4 @@
-echo ">>>>>> Update homebrew START >>>>>>"
+echo "<-------- Update homebrew START -------->"
 
 if command -v brew >/dev/null 2>&1; then
     echo ">> Homebrew is already installed"
@@ -19,4 +19,4 @@ else
     exit 1
 fi
 
-echo "<<<<<< Update homebrew END <<<<<<"
+echo "<-------- Update homebrew END -------->"

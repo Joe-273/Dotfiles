@@ -1,4 +1,4 @@
-echo ">>>>>> Install apps START >>>>>>"
+echo "<-------- Install apps START -------->"
 
 if ! command -v brew &> /dev/null; then
     echo "!!! Homebrew is not installed."
@@ -11,6 +11,7 @@ apps=(
     "NVM:brew install nvm"
     "Neovim:brew install neovim"
     "Wezterm:brew install --cask wezterm"
+    "VSCode:brew install --cask visual-studio-code"
     "NerdFont:brew install --cask font-jetbrains-mono-nerd-font"
 )
 
@@ -41,4 +42,4 @@ for app in "${apps[@]}"; do
     fi
 done
 
-echo "<<<<<< Install apps END <<<<<<"
+echo "<-------- Install apps END -------->"
