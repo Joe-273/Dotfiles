@@ -1,0 +1,6 @@
+[submodule "MacConf/config/nvim"]
+	path = MacConf/config/nvim
+	url = https://github.com/Joe-273/nvim.git
+[submodule "MacConf/config/wezterm"]
+	path = MacConf/config/wezterm
+	url = https://github.com/Joe-273/wezterm.git
