@@ -11,7 +11,8 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # Key binding
-bindkey "^Y" accept-line
+bindkey "^Y" autosuggest-accept
+bindkey '^E' autosuggest-clear
 
 # [[ User Configuration ]]
 # Quick Command
