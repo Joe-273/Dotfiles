@@ -2,6 +2,8 @@ SOURCE="$HOME/Dotfiles/MacConf/config"
 declare -A link_map=(
     ["~/.zshrc"]="$SOURCE/zsh/zshrc"
     ["~/.gitconfig"]="$SOURCE/git/gitconfig"
+    ["~/.config/nvim"]="$SOURCE/nvim"
+    ["~/.config/wezterm"]="$SOURCE/wezterm"
 )
 
 for target in "${(@k)link_map}"; do
