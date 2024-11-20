@@ -1,3 +1,4 @@
+
 # Homebrew Configure
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -11,14 +12,17 @@ ZSH_THEME="robbyrussell"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # Load oh-my-zsh
-source ~/.oh-my-zsh/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # Key binding
 bindkey "^Y" autosuggest-accept
 bindkey '^E' autosuggest-clear
 
 # [[ User Configuration ]]
-export MAC_CONF_DIR="$HOME/Dotfiles/MacConf"
+export MAC_CONF_DIR="/Users/qihao/Dotfiles/MacConf"
+# Set proxy
+export https_proxy=http://127.0.0.1:7897 http_proxy=http://127.0.0.1:7897 all_proxy=socks5://127.0.0.1:7897
+
 
 # Quick Command
 cdd() {

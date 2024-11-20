@@ -1,13 +1,18 @@
-echo "<-------- Install apps START -------->"
+#!/bin/zsh
+
+echo -e "\033[34m<-------------- Install apps START -------------->\033[0m"
 
 if ! command -v brew &> /dev/null; then
-    echo "ERROR: homebrew is not installed. Please run < update_homebrew.sh > first."
+    echo -e "\033[31mERROR\033[0m: homebrew is not installed. Please run < update_homebrew.sh > first."
     exit 1
 fi
 
 apps=(
     # Format: "Description:Installation Command"
     "NVM:brew install nvm"
+    "FZF:brew install fzf"
+    "FD:brew install fd"
+    "Lazygit:brew install lazygit"
     "Neovim:brew install neovim"
     "QQ:brew install --cask qq"
     "Wechat:brew install --cask wechat"
@@ -23,27 +28,27 @@ install_apps() {
         description=${app%%:*}
         command=${app#*:}
 
-        echo ">> Checking if $description is installed..."
+        echo -e "\033[32m==>\033[0m Checking if $description is installed..."
 
         # Check if the application is already installed using brew
         if [[ $command == *"brew install"* ]]; then
-            app_name=$(echo $command | cut -d ' ' -f 3)  # Extract the app name from the install command
+            app_name=$(echo -e $command | cut -d ' ' -f 3)  # Extract the app name from the install command
 
             if brew list --formula | grep -q "^$app_name\$" || brew list --cask | grep -q "^$app_name\$"; then
-                echo ">> $description is already installed. Skipping..."
+                echo -e "\033[32m==>\033[0m $description is already installed. Skipping..."
             else
-                echo ">> Installing $description..."
+                echo -e "\033[32m==>\033[0m Installing $description..."
                 eval $command
 
                 if [[ $? -eq 0 ]]; then
-                    echo ">> $description installed successfully!"
+                    echo -e "\033[32m==>\033[0m $description installed successfully!"
                 else
-                    echo "ERROR: Failed to install $description."
+                    echo -e "\033[31mERROR\033[0m: Failed to install $description."
                     return 1  # Return error if installation fails
                 fi
             fi
         else
-            echo "ERROR: $description installation command is not recognized. Skipping..."
+            echo -e "\033[31mERROR\033[0m: $description installation command is not recognized. Skipping..."
             return 1  # Return error if command is not recognized
         fi
     done
@@ -52,8 +57,10 @@ install_apps() {
 
 # Loop until all apps are installed
 until install_apps; do
-    echo "ERROR: Some apps failed to install. Retrying..."
-    echo "<-------- Install apps RESTART -------->"
+    echo -e "\033[31mERROR\033[0m: Some apps failed to install. Retrying..."
+    echo -e "\033[34m<-------------- Install apps RESTART -------------->\033[0m"
+    echo -e "\033[33mPress Enter to retry...\033[0m"
+    read -r
 done
 
-echo "<-------- Install apps END -------->"
+echo -e "\033[34m<-------------- Install apps END -------------->\033[0m"
