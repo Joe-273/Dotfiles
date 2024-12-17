@@ -19,7 +19,8 @@ apps=(
     "QQMusic:brew install --cask qqmusic"
     "Wezterm:brew install --cask wezterm"
     "VSCode:brew install --cask visual-studio-code"
-    "NerdFont:brew install --cask font-jetbrains-mono-nerd-font"
+	  "Font:brew install --cask font-maple-mono"
+    "Font:brew install --cask font-jetbrains-mono-nerd-font"
 )
 
 # Function to install apps

@@ -19,6 +19,13 @@ bindkey "^Y" autosuggest-accept
 bindkey '^E' autosuggest-clear
 
 # [[ User Configuration ]]
+Current_Dir=$(dirname "$(realpath "${(%):-%x}")")
+echo $Current_Dir
+Parent_Dir=$(dirname "$Current_Dir")
+echo $Parent_Dir
+Dotfiles_Dir=$(dirname "$Parent_Dir")
+echo $Dotfiles_Dir
+
 export MAC_CONF_DIR="/Users/qihao/Dotfiles/MacConf"
 # Set proxy
 export https_proxy=http://127.0.0.1:7897 http_proxy=http://127.0.0.1:7897 all_proxy=socks5://127.0.0.1:7897
